@@ -8,20 +8,21 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 6;
+    [SerializeField] private int maxHealth = 4;
     [SerializeField] private float delayBeforeReturn = 3f; 
     [SerializeField] private float damageRecoveryTime = 1f;
-    [SerializeField] private TextMeshProUGUI deathText; 
+    [SerializeField] private TextMeshProUGUI deathText;
     private Slider healthSlider; 
     private int currentHealth;
-    private bool canTakeDamage = true; 
-    
+    private bool canTakeDamage = true;
+    [SerializeField] GameObject deathPanel;
+
+
     private void Start()
     {
         currentHealth = maxHealth; 
         UpdateHealthSlider();
-        if (deathText != null)
-            deathText.gameObject.SetActive(false);
+       
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -53,14 +54,17 @@ public class PlayerHealth : MonoBehaviour
     }
     private IEnumerator HandlePlayerDeath()
     {
-        if (deathText != null)
+        if (deathText != null )
         {
             deathText.gameObject.SetActive(true);
+            deathPanel.SetActive(true);
             deathText.text = "GAME OVER";
             Debug.Log("player death");
         }
 
-        yield return new WaitForSeconds(delayBeforeReturn);
+        Time.timeScale = 0; 
+        yield return new WaitForSecondsRealtime(delayBeforeReturn); 
+        Time.timeScale = 1;
         SceneManager.LoadScene("StartScene");
     }
 

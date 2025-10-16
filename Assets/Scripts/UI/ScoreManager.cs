@@ -6,26 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
-    float delayBeforeReturn = 2f;
+    float delayBeforeReturn = 3f;
     int score = 0;
-    TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] int victoryScore = 5;
     [SerializeField] TextMeshProUGUI victoryText;
+    [SerializeField] GameObject victoryPanel;
 
     void Start()
     {
-        scoreText = GetComponent<TextMeshProUGUI>();
-        if (scoreText == null)
-        {
-            Debug.LogError("TextMeshProUGUI is null");
-        }
         scoreText.text = $"Score: {score}/{victoryScore}";
-        if (victoryText != null)
-        {
-            victoryText.gameObject.SetActive(false);
-        }
         Events.OnScoreUpdate += UpdateScore;
-    }
+    } 
 
     private void UpdateScore(int scoreAdd)
     {
@@ -42,20 +34,18 @@ public class ScoreManager : MonoBehaviour
     {
         if (victoryText != null)
         {
+            Time.timeScale = 0;
             victoryText.gameObject.SetActive(true);
-            victoryText.text = "Good-job!!";
+            victoryPanel.gameObject.SetActive(true);
+            victoryText.text = "Good-Job";
             StartCoroutine(ReturnToFirstScene());
         }
     }
 
     private IEnumerator ReturnToFirstScene()
     {
-        float timer = 0f;
-        while (timer < delayBeforeReturn)
-        {
-            timer += Time.deltaTime; 
-            yield return null;     
-        }
+        yield return new WaitForSecondsRealtime(delayBeforeReturn); 
+        Time.timeScale = 1; 
         SceneManager.LoadScene("StartScene");
     }
 
