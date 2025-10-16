@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
-    float delayBeforeReturn = 4f;
+    float delayBeforeReturn = 2f;
     int score = 0;
     TextMeshProUGUI scoreText;
-    public int victoryScore = 15;
+    [SerializeField] int victoryScore = 5;
     [SerializeField] TextMeshProUGUI victoryText;
 
     void Start()
