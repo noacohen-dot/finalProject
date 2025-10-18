@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 
 
-public class Sword : MonoBehaviour
+public class Sword : MonoBehaviour, IWeapon
 {
     private Animator animator;
     InputSystem inputActions;
@@ -14,6 +14,8 @@ public class Sword : MonoBehaviour
     float normalRotationX = 0f;
     float flipRotationX = 180f;
     float rotationY = 0f;
+    [SerializeField] private float swordAttackCD=.5F;
+    [SerializeField] ActiveWeapon activeWeapon;
 
 
     void Start()
@@ -59,6 +61,18 @@ public class Sword : MonoBehaviour
                 swordPivot.transform.localRotation = Quaternion.Euler(normalRotationX, rotationY, rotationZ);
             }
         }
+    }
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
+        Debug.Log("Sword Attack");
+        StartCoroutine(AttackCDRoutine());
+    }
+
+    private IEnumerator AttackCDRoutine()
+    {
+        yield return new WaitForSeconds(swordAttackCD);
+        activeWeapon.ToggleIsAttacking(false);
     }
 
     private void OnCombatStarted(UnityEngine.InputSystem.InputAction.CallbackContext ctx)

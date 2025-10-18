@@ -738,6 +738,56 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""SwordsMenu"",
+            ""id"": ""5e76f14d-0ba8-4796-bd96-317065c4f9fd"",
+            ""actions"": [
+                {
+                    ""name"": ""Keyboard"",
+                    ""type"": ""Value"",
+                    ""id"": ""5b717dcd-0a90-4012-a7b1-9397a5648d06"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""942c73c9-0c63-444a-b15e-6719ca557aff"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a4e03b12-df91-4221-b0e5-509346e28ed4"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34363b82-3295-4f70-bf2f-f201b9824e7b"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Keyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -819,12 +869,16 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Combat = m_Player.FindAction("Combat", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        // SwordsMenu
+        m_SwordsMenu = asset.FindActionMap("SwordsMenu", throwIfNotFound: true);
+        m_SwordsMenu_Keyboard = m_SwordsMenu.FindAction("Keyboard", throwIfNotFound: true);
     }
 
     ~@InputSystem()
     {
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem.Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_SwordsMenu.enabled, "This will cause a leak and performance issues, InputSystem.SwordsMenu.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1198,6 +1252,102 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
     /// </summary>
     public PlayerActions @Player => new PlayerActions(this);
+
+    // SwordsMenu
+    private readonly InputActionMap m_SwordsMenu;
+    private List<ISwordsMenuActions> m_SwordsMenuActionsCallbackInterfaces = new List<ISwordsMenuActions>();
+    private readonly InputAction m_SwordsMenu_Keyboard;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "SwordsMenu".
+    /// </summary>
+    public struct SwordsMenuActions
+    {
+        private @InputSystem m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public SwordsMenuActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "SwordsMenu/Keyboard".
+        /// </summary>
+        public InputAction @Keyboard => m_Wrapper.m_SwordsMenu_Keyboard;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_SwordsMenu; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="SwordsMenuActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(SwordsMenuActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="SwordsMenuActions" />
+        public void AddCallbacks(ISwordsMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SwordsMenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SwordsMenuActionsCallbackInterfaces.Add(instance);
+            @Keyboard.started += instance.OnKeyboard;
+            @Keyboard.performed += instance.OnKeyboard;
+            @Keyboard.canceled += instance.OnKeyboard;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="SwordsMenuActions" />
+        private void UnregisterCallbacks(ISwordsMenuActions instance)
+        {
+            @Keyboard.started -= instance.OnKeyboard;
+            @Keyboard.performed -= instance.OnKeyboard;
+            @Keyboard.canceled -= instance.OnKeyboard;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="SwordsMenuActions.UnregisterCallbacks(ISwordsMenuActions)" />.
+        /// </summary>
+        /// <seealso cref="SwordsMenuActions.UnregisterCallbacks(ISwordsMenuActions)" />
+        public void RemoveCallbacks(ISwordsMenuActions instance)
+        {
+            if (m_Wrapper.m_SwordsMenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="SwordsMenuActions.AddCallbacks(ISwordsMenuActions)" />
+        /// <seealso cref="SwordsMenuActions.RemoveCallbacks(ISwordsMenuActions)" />
+        /// <seealso cref="SwordsMenuActions.UnregisterCallbacks(ISwordsMenuActions)" />
+        public void SetCallbacks(ISwordsMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SwordsMenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SwordsMenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="SwordsMenuActions" /> instance referencing this action map.
+    /// </summary>
+    public SwordsMenuActions @SwordsMenu => new SwordsMenuActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -1362,5 +1512,20 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "SwordsMenu" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="SwordsMenuActions.AddCallbacks(ISwordsMenuActions)" />
+    /// <seealso cref="SwordsMenuActions.RemoveCallbacks(ISwordsMenuActions)" />
+    public interface ISwordsMenuActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Keyboard" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnKeyboard(InputAction.CallbackContext context);
     }
 }

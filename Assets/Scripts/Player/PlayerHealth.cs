@@ -22,7 +22,6 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth; 
         UpdateHealthSlider();
-       
     }
 
     private void OnCollisionEnter2D(Collision2D other)
