@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class ActiveWeapon : MonoBehaviour
 {
-    [SerializeField] private MonoBehaviour currentActiveWeapon;
+    public MonoBehaviour CurrentActiveWeapon {  get; private set; }
     InputSystem inputActions;
     private bool attackButtonDown, isAttacking = false;
 
@@ -25,6 +25,14 @@ public class ActiveWeapon : MonoBehaviour
     private void Update()
     {
         Attack();
+    }
+    public void NewWeapon (MonoBehaviour newWeapon)
+    {
+        CurrentActiveWeapon = newWeapon;
+    }
+    public void WeaponNull()
+    {
+        CurrentActiveWeapon = null;
     }
 
     public void ToggleIsAttacking(bool value)
@@ -48,7 +56,7 @@ public class ActiveWeapon : MonoBehaviour
         {
             isAttacking = true;
 
-            if (currentActiveWeapon is IWeapon weapon)
+            if (CurrentActiveWeapon is IWeapon weapon)
             {
                 weapon.Attack();
             }

@@ -10,11 +10,11 @@ public class Sword : MonoBehaviour, IWeapon
     private Animator animator;
     InputSystem inputActions;
     private PlayerMove playerMove;
-    [SerializeField] private GameObject swordPivot;
+    [SerializeField] GameObject swordPivot;
     float normalRotationX = 0f;
     float flipRotationX = 180f;
     float rotationY = 0f;
-    [SerializeField] private float swordAttackCD=.5F;
+    [SerializeField] float swordAttackCD=.5F;
     [SerializeField] ActiveWeapon activeWeapon;
 
 
