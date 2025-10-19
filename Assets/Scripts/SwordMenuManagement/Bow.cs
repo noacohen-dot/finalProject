@@ -10,24 +10,12 @@ public class Bow : MonoBehaviour, IWeapon
     private PlayerMove playerMove;
     private Animator myAnimator;
     private MouseFollow mouseFollow;
-    GameObject swordPivot;
     private float flipRotationY = -180f;
     private float normalRotationY = 0f;
     private float rotationX = 0f;
     readonly int fireHash = Animator.StringToHash("Fire");
-
-
-    private Vector2 lastMoveInput;
     void Start()
     {
-        if (swordPivot == null)
-        {
-            swordPivot = GameObject.FindWithTag("SwordPivot");
-            if (swordPivot == null)
-            {
-                Debug.LogError("SwordPivot not found in scene!");
-            }
-        }
         playerMove = GetComponentInParent<PlayerMove>();
         if (playerMove == null)
         {

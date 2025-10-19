@@ -5,12 +5,30 @@ using UnityEngine;
 public class Staff : MonoBehaviour, IWeapon
 {
     [SerializeField] private WeaponInfo weaponInfo;
+    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private Transform arrowSpawnPoint;
+    private Animator myAnimator;
     private PlayerMove playerMove;
     private MouseFollow mouseFollow; 
     private float flipRotationY = -180f;
     private float normalRotationY = 0f;
     private float rotationX = 0f;
+    readonly int fireHash = Animator.StringToHash("Fire");
 
+
+    void Start()
+    {
+        playerMove = GetComponentInParent<PlayerMove>();
+        if (playerMove == null)
+        {
+            Debug.LogError("PlayerMove is null");
+        }
+        myAnimator = GetComponent<Animator>();
+        if (myAnimator == null)
+        {
+            Debug.LogError("Animator is null");
+        }
+    }
     private void Awake()
     {
         playerMove = GetComponentInParent<PlayerMove>();
@@ -24,8 +42,8 @@ public class Staff : MonoBehaviour, IWeapon
 
     public void Attack()
     {
-        Debug.Log("Staff Attack");
-
+        myAnimator.SetTrigger(fireHash);
+        GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, ActiveWeapon.Instance.transform.rotation);
     }
     private void RotateTowardsMouse()
     {
