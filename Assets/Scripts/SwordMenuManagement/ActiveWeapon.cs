@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class ActiveWeapon : MonoBehaviour
+public class ActiveWeapon : Singleton<ActiveWeapon>
 {
     public MonoBehaviour CurrentActiveWeapon {  get; private set; }
     InputSystem inputActions;
     private bool attackButtonDown, isAttacking = false;
+    private float timeBetweenAttacks;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         inputActions = new();
+    }
+    private void Start()
+    {
+        AttackCoolDown();
     }
 
     private void OnEnable()
@@ -29,17 +36,26 @@ public class ActiveWeapon : MonoBehaviour
     public void NewWeapon (MonoBehaviour newWeapon)
     {
         CurrentActiveWeapon = newWeapon;
+        AttackCoolDown();
+        timeBetweenAttacks = (CurrentActiveWeapon as IWeapon).GetWeaponInfo().weaponCoolDown;
+
     }
     public void WeaponNull()
     {
         CurrentActiveWeapon = null;
     }
 
-    public void ToggleIsAttacking(bool value)
+    private void AttackCoolDown()
     {
-        isAttacking = value;
+        isAttacking = true;
+        StopAllCoroutines();
+        StartCoroutine(TimeBetweenAttacksRoutine());
     }
-
+    private IEnumerator TimeBetweenAttacksRoutine()
+    {
+        yield return new WaitForSeconds(timeBetweenAttacks);
+        isAttacking = false;
+    }
     private void OnStartAttacking(InputAction.CallbackContext context)
     {
         attackButtonDown = true;
@@ -54,16 +70,8 @@ public class ActiveWeapon : MonoBehaviour
     {
         if (attackButtonDown && !isAttacking)
         {
-            isAttacking = true;
-
-            if (CurrentActiveWeapon is IWeapon weapon)
-            {
-                weapon.Attack();
-            }
-            else
-            {
-                Debug.LogError("currentActiveWeapon is null or does not implement IWeapon!");
-            }
+            AttackCoolDown();
+            (CurrentActiveWeapon as IWeapon).Attack();
         }
     }
     private void OnDisable()

@@ -4,11 +4,71 @@ using UnityEngine;
 
 public class Bow : MonoBehaviour, IWeapon
 {
-    [SerializeField] ActiveWeapon activeWeapon;
+    [SerializeField] private WeaponInfo weaponInfo;
+    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private Transform arrowSpawnPoint;
+    private PlayerMove playerMove;
+    private Animator myAnimator;
+    private MouseFollow mouseFollow;
+    GameObject swordPivot;
+    private float flipRotationY = -180f;
+    private float normalRotationY = 0f;
+    private float rotationX = 0f;
+    readonly int fireHash = Animator.StringToHash("Fire");
 
+
+    private Vector2 lastMoveInput;
+    void Start()
+    {
+        if (swordPivot == null)
+        {
+            swordPivot = GameObject.FindWithTag("SwordPivot");
+            if (swordPivot == null)
+            {
+                Debug.LogError("SwordPivot not found in scene!");
+            }
+        }
+        playerMove = GetComponentInParent<PlayerMove>();
+        if (playerMove == null)
+        {
+            Debug.LogError("PlayerMove is null");
+        }
+        myAnimator = GetComponent<Animator>();
+        if (myAnimator == null)
+        {
+            Debug.LogError("Animator is null");
+        }
+    }
     public void Attack()
     {
-        Debug.Log("Bow Attack");
-        activeWeapon.ToggleIsAttacking(false);
+        myAnimator.SetTrigger(fireHash);
+        GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, ActiveWeapon.Instance.transform.rotation);
     }
+    public WeaponInfo GetWeaponInfo()
+    {
+        return weaponInfo;
+    }
+
+    private void Update()
+    {
+        RotateBow();
+    }
+    private void RotateBow()
+    {
+        if (mouseFollow == null || playerMove == null)
+            return; // לא נמשיך אם אחד מהם חסר
+
+        Vector3 mouseDir = mouseFollow.transform.position - playerMove.transform.position;
+        float angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
+
+        if (mouseFollow.transform.position.x < playerMove.transform.position.x)
+        {
+            transform.localRotation = Quaternion.Euler(rotationX, flipRotationY, angle);
+        }
+        else
+        {
+            transform.localRotation = Quaternion.Euler(rotationX, normalRotationY, angle);
+        }
+    }
+
 }

@@ -6,13 +6,13 @@ using UnityEngine;
 public class SwordMenu : MonoBehaviour
 {
     private int activeSlotIndexNum = 0;
-    [SerializeField] ActiveWeapon activeWeapon;
-
     InputSystem inputActions;
+    int activeWeaponPosition = 0;
 
     private void Start()
     {
         ToggleActiveHighlight(0);
+        ChangeActiveWeapon();
     }
     private void Awake()
     {
@@ -45,35 +45,26 @@ public class SwordMenu : MonoBehaviour
     }
     private void ChangeActiveWeapon()
     {
-        if (activeWeapon == null)
+        if (ActiveWeapon.Instance.CurrentActiveWeapon != null)
         {
-            Debug.LogError("ActiveWeapon reference is missing!");
-            return;
-        }
-
-        if (activeWeapon.CurrentActiveWeapon != null)
-        {
-            Destroy(activeWeapon.CurrentActiveWeapon.gameObject);
+            Destroy(ActiveWeapon.Instance.CurrentActiveWeapon.gameObject);
         }
 
         if (!transform.GetChild(activeSlotIndexNum).GetComponentInChildren<InventorySlot>())
         {
-            activeWeapon.WeaponNull();
+            ActiveWeapon.Instance.WeaponNull();
             return;
         }
 
-        GameObject weaponToSpawn = transform.GetChild(activeSlotIndexNum)
-            .GetComponentInChildren<InventorySlot>().GetWeaponInfo().weaponPrefab;
+        GameObject weaponToSpawn = transform.GetChild(activeSlotIndexNum).
+        GetComponentInChildren<InventorySlot>().GetWeaponInfo().weaponPrefab;
 
-        GameObject newWeapon = Instantiate(
-            weaponToSpawn,
-            activeWeapon.transform.position,
-            Quaternion.identity
-        );
+        GameObject newWeapon = Instantiate(weaponToSpawn, ActiveWeapon.Instance.transform.position, Quaternion.identity);
+        ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(activeWeaponPosition, activeWeaponPosition, activeWeaponPosition);
+        newWeapon.transform.parent = ActiveWeapon.Instance.transform;
+        newWeapon.SetActive(true);
 
-        newWeapon.transform.parent = activeWeapon.transform;
-
-        activeWeapon.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
+        ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
     }
 
     private void OnDisable()

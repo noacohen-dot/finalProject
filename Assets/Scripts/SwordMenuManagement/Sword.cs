@@ -10,16 +10,23 @@ public class Sword : MonoBehaviour, IWeapon
     private Animator animator;
     InputSystem inputActions;
     private PlayerMove playerMove;
-    [SerializeField] GameObject swordPivot;
+    GameObject swordPivot;
     float normalRotationX = 0f;
     float flipRotationX = 180f;
     float rotationY = 0f;
-    [SerializeField] float swordAttackCD=.5F;
-    [SerializeField] ActiveWeapon activeWeapon;
-
+    private Vector2 lastMoveInput = Vector2.right;
+    [SerializeField] private WeaponInfo weaponInfo;
 
     void Start()
     {
+        if (swordPivot == null)
+        {
+            swordPivot = GameObject.FindWithTag("SwordPivot");
+            if (swordPivot == null)
+            {
+                Debug.LogError("SwordPivot not found in scene!");
+            }
+        }
         animator = GetComponent<Animator>();
         if (animator == null)
         {
@@ -50,30 +57,30 @@ public class Sword : MonoBehaviour, IWeapon
     {
         if (playerMove.moveInput != Vector2.zero)
         {
-            float angle = Mathf.Atan2(playerMove.moveInput.y, playerMove.moveInput.x) * Mathf.Rad2Deg;
-            float rotationZ = angle; 
-            if (playerMove.moveInput.x < 0)
-            {
-                swordPivot.transform.localRotation = Quaternion.Euler(flipRotationX, rotationY, -rotationZ);
-            }
-            else
-            {
-                swordPivot.transform.localRotation = Quaternion.Euler(normalRotationX, rotationY, rotationZ);
-            }
+            lastMoveInput = playerMove.moveInput;
+        }
+        float angle = Mathf.Atan2(lastMoveInput.y, lastMoveInput.x) * Mathf.Rad2Deg;
+        float rotationZ = angle;
+
+        if (lastMoveInput.x < 0)
+        {
+            swordPivot.transform.localRotation = Quaternion.Euler(flipRotationX, rotationY, -rotationZ);
+        }
+        else
+        {
+            swordPivot.transform.localRotation = Quaternion.Euler(normalRotationX, rotationY, rotationZ);
         }
     }
     public void Attack()
     {
         animator.SetTrigger("Attack");
         Debug.Log("Sword Attack");
-        StartCoroutine(AttackCDRoutine());
+    }
+    public WeaponInfo GetWeaponInfo()
+    {
+        return weaponInfo;
     }
 
-    private IEnumerator AttackCDRoutine()
-    {
-        yield return new WaitForSeconds(swordAttackCD);
-        activeWeapon.ToggleIsAttacking(false);
-    }
 
     private void OnCombatStarted(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {

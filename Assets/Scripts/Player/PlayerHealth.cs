@@ -16,20 +16,38 @@ public class PlayerHealth : MonoBehaviour
     private int currentHealth;
     private bool canTakeDamage = true;
     [SerializeField] GameObject deathPanel;
+    SpriteRenderer sprite;
+    private Color originalColor;
+    private float flashDuration = 0.5f;
+
 
 
     private void Start()
     {
         currentHealth = maxHealth; 
         UpdateHealthSlider();
+        sprite = GetComponent<SpriteRenderer>();
+        if (sprite == null)
+        {
+            Debug.LogError("SpriteRenderer is null");
+        }
+        originalColor = sprite.color;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("enemy"))
         {
-            TakeDamage(1); 
+            sprite.color = Color.red;
+            TakeDamage(1);
+            StartCoroutine(FlashRed());
         }
+    }
+    private IEnumerator FlashRed()
+    {
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        sprite.color = originalColor;
     }
 
     public void TakeDamage(int damageAmount)

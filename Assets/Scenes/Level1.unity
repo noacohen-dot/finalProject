@@ -84000,7 +84000,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.000038146973, y: 100}
+  m_AnchoredPosition: {x: 3, y: 123}
   m_SizeDelta: {x: 445, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &947690025
@@ -84039,7 +84039,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6756e43ba010ac24c99d81ab5c35d9a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeWeapon: {fileID: 0}
 --- !u!1001 &982921584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85798,7 +85797,6 @@ GameObject:
   - component: {fileID: 1773098316}
   - component: {fileID: 1773098318}
   - component: {fileID: 1773098317}
-  - component: {fileID: 1773098319}
   m_Layer: 5
   m_Name: PanelDeath
   m_TagString: Untagged
@@ -85864,23 +85862,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773098315}
   m_CullTransparentMesh: 1
---- !u!114 &1773098319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773098315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db742d387fa6347449b4cce64e5c07a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 4
-  delayBeforeReturn: 3
-  damageRecoveryTime: 1
-  deathText: {fileID: 1781449876}
-  deathPanel: {fileID: 1773098315}
 --- !u!1 &1781449873
 GameObject:
   m_ObjectHideFlags: 0
@@ -87254,13 +87235,26 @@ GameObject:
   m_Component:
   - component: {fileID: 4746684368883963604}
   - component: {fileID: 1897286177}
+  - component: {fileID: 8460277118024542120}
   m_Layer: 0
   m_Name: SwordPivot
-  m_TagString: Untagged
+  m_TagString: SwordPivot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8460277118024542120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460277118024542119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ebf0de37f57a842baf0bfe781c8cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -31,4 +31,21 @@ public class KillEnemy : MonoBehaviour
             return;
         }
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (isDead == true)
+        {
+            return;
+        }
+        else if (other.gameObject.CompareTag("Arrow"))
+        {
+            isDead = true;
+            transform.localScale = transform.localScale * 0.5f;
+            sprite.color = Color.red;
+            Events.OnScoreUpdate?.Invoke(enemiesData.Score);
+            Destroy(gameObject, delayForDestroy);
+            return;
+        }
+
+    }
 } 
