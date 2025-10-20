@@ -9,9 +9,12 @@ public class MouseFollow : MonoBehaviour
     private InputSystem inputActions; 
     private Vector2 mousePosition;
 
+    private void Start()
+    {
+        Events.OnCameraUpdated += HandleCameraUpdated;
+    }
     private void Awake()
     {
-        mainCamera = Camera.main;
         inputActions = new InputSystem(); 
     }
 
@@ -21,14 +24,14 @@ public class MouseFollow : MonoBehaviour
         inputActions.Player.MousePosition.performed += OnMouseMoved; 
     }
 
-    private void OnDisable()
+    private void HandleCameraUpdated(Camera cam)
     {
-        inputActions.Player.MousePosition.performed -= OnMouseMoved;
-        inputActions.Player.Disable();
+        mainCamera = cam;
     }
 
     private void Update()
     {
+        if (mainCamera == null) return;
         FaceMouse();
     }
 
@@ -40,10 +43,21 @@ public class MouseFollow : MonoBehaviour
     private void FaceMouse()
     {
         Vector3 worldMousePos = mainCamera.ScreenToWorldPoint(
-            new Vector3(mousePosition.x, mousePosition.y, mainCamera.nearClipPlane)
-        );
+             new Vector3(mousePosition.x, mousePosition.y, mainCamera.nearClipPlane)
+         );
 
         Vector2 direction = (Vector2)(worldMousePos - transform.position);
         transform.right = direction;
+
+        Events.OnMousePositionChanged?.Invoke(worldMousePos);
+    }
+    private void OnDestroy()
+    {
+        Events.OnCameraUpdated -= HandleCameraUpdated;
+    }
+    private void OnDisable()
+    {
+        inputActions.Player.MousePosition.performed -= OnMouseMoved;
+        inputActions.Player.Disable();
     }
 }

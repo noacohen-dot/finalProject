@@ -30,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2770118426336925774}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.12127891, y: -0.18939242, z: 0.38333464, w: -0.89581054}
+  m_LocalRotation: {x: -0.09704763, y: -0.18038853, z: 0.3817694, w: -0.9012735}
   m_LocalPosition: {x: 3.29, y: 8.42, z: 0}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 21.253, y: -344.674, z: -43.442}
+  m_LocalEulerAnglesHint: {x: 18.22, y: -344.674, z: -43.442}
 --- !u!212 &2573757144436928428
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0.14345591
-        value: 0.36022526
+        value: 0.18345982
         inSlope: -0.8671957
         outSlope: -0.8671957
         tangentMode: 0

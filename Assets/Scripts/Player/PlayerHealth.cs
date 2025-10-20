@@ -43,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(FlashRed());
         }
     }
+
     private IEnumerator FlashRed()
     {
         sprite.color = Color.red;

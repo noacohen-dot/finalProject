@@ -8,8 +8,6 @@ using UnityEditor;
 public class Sword : MonoBehaviour, IWeapon
 {
     private Animator animator;
-    InputSystem inputActions;
-    private PlayerMove playerMove;
     GameObject swordPivot;
     float normalRotationX = 0f;
     float flipRotationX = 180f;
@@ -32,63 +30,43 @@ public class Sword : MonoBehaviour, IWeapon
         {
             Debug.LogError("Animator is null");
         }
-        playerMove = GetComponentInParent<PlayerMove>();
-        if (playerMove == null)
-        {
-            Debug.LogError("PlayerMove is null");
-        }
+        Events.OnPlayerMoveInputChanged += HandlePlayerMoveInput;
     }
 
-    private void Awake()
-    {
-        inputActions = new();
-    }
-    private void OnEnable()
-    {
-        inputActions.Player.Enable();
-        inputActions.Player.Combat.started += OnCombatStarted;
-    }
     private void Update()
     {
         RotateSword();
     }
+    private void HandlePlayerMoveInput(Vector2 moveInput)
+    {
+        if (moveInput != Vector2.zero)
+        {
+            lastMoveInput = moveInput;
+            RotateSword();
+        }
+    }
+
 
     private void RotateSword()
     {
-        if (playerMove.moveInput != Vector2.zero)
-        {
-            lastMoveInput = playerMove.moveInput;
-        }
         float angle = Mathf.Atan2(lastMoveInput.y, lastMoveInput.x) * Mathf.Rad2Deg;
         float rotationZ = angle;
 
         if (lastMoveInput.x < 0)
-        {
             swordPivot.transform.localRotation = Quaternion.Euler(flipRotationX, rotationY, -rotationZ);
-        }
         else
-        {
             swordPivot.transform.localRotation = Quaternion.Euler(normalRotationX, rotationY, rotationZ);
-        }
     }
     public void Attack()
     {
         animator.SetTrigger("Attack");
-        Debug.Log("Sword Attack");
     }
     public WeaponInfo GetWeaponInfo()
     {
         return weaponInfo;
     }
-
-
-    private void OnCombatStarted(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+    private void OnDestroy()
     {
-        animator.SetTrigger("Attack");
-    }
-    private void OnDisable()
-    {
-        inputActions.Player.Disable();
-        inputActions.Player.Combat.started -= OnCombatStarted;
+        Events.OnPlayerMoveInputChanged -= HandlePlayerMoveInput;
     }
 }

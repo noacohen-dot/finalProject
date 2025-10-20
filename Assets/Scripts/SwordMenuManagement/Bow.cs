@@ -7,25 +7,31 @@ public class Bow : MonoBehaviour, IWeapon
     [SerializeField] private WeaponInfo weaponInfo;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowSpawnPoint;
-    private PlayerMove playerMove;
     private Animator myAnimator;
-    private MouseFollow mouseFollow;
     private float flipRotationY = -180f;
     private float normalRotationY = 0f;
     private float rotationX = 0f;
+    private Vector3 playerPosition;
     readonly int fireHash = Animator.StringToHash("Fire");
+    private Vector3 mouseWorldPosition;
+
     void Start()
     {
-        playerMove = GetComponentInParent<PlayerMove>();
-        if (playerMove == null)
-        {
-            Debug.LogError("PlayerMove is null");
-        }
         myAnimator = GetComponent<Animator>();
         if (myAnimator == null)
         {
             Debug.LogError("Animator is null");
         }
+        Events.OnPlayerPositionChanged += UpdatePlayerPosition;
+        Events.OnMousePositionChanged += UpdateMousePosition;
+    }
+    private void UpdatePlayerPosition(Vector3 newPosition)
+    {
+        playerPosition = newPosition;
+    }
+    private void UpdateMousePosition(Vector3 newMousePos)
+    {
+        mouseWorldPosition = newMousePos;
     }
     public void Attack()
     {
@@ -39,17 +45,17 @@ public class Bow : MonoBehaviour, IWeapon
 
     private void Update()
     {
-        RotateBow();
+        RotateTowardsMouse();
     }
-    private void RotateBow()
+    private void RotateTowardsMouse()
     {
-        if (mouseFollow == null || playerMove == null)
-            return; // לא נמשיך אם אחד מהם חסר
+        if (playerPosition == Vector3.zero || mouseWorldPosition == Vector3.zero)
+            return;
 
-        Vector3 mouseDir = mouseFollow.transform.position - playerMove.transform.position;
+        Vector3 mouseDir = mouseWorldPosition - playerPosition;
         float angle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
 
-        if (mouseFollow.transform.position.x < playerMove.transform.position.x)
+        if (mouseWorldPosition.x < playerPosition.x)
         {
             transform.localRotation = Quaternion.Euler(rotationX, flipRotationY, angle);
         }
@@ -57,6 +63,11 @@ public class Bow : MonoBehaviour, IWeapon
         {
             transform.localRotation = Quaternion.Euler(rotationX, normalRotationY, angle);
         }
+    }
+    private void OnDestroy()
+    {
+        Events.OnPlayerPositionChanged -= UpdatePlayerPosition;
+        Events.OnMousePositionChanged -= UpdateMousePosition;
     }
 
 }

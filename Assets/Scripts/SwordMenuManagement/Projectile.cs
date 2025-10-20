@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
 
     private void MoveProjectile()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * arrowInfo.moveSpeedProjectile);
+        transform.Translate(Vector3.up * Time.deltaTime * arrowInfo.moveSpeedProjectile);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

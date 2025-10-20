@@ -55,6 +55,7 @@ public class PlayerMove : MonoBehaviour
         {
             lastMoveDirection = moveInput; 
         }
+        Events.OnPlayerMoveInputChanged?.Invoke(moveInput);
     }
     private void OnMoveCanceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
@@ -62,11 +63,13 @@ public class PlayerMove : MonoBehaviour
         animator.SetBool("IsWalking", false);
         animator.SetFloat("LastInputX", lastMoveDirection.x);
         animator.SetFloat("LastInputY", lastMoveDirection.y);
+        Events.OnPlayerMoveInputChanged?.Invoke(Vector2.zero);
     }
-   
+
     private void FixedUpdate()
     {
         rb.linearVelocity = moveInput * speed;
+        Events.OnPlayerPositionChanged?.Invoke(transform.position);
     }
     private void OnDisable()
     {
