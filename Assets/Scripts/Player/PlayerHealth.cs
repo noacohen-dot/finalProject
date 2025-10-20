@@ -97,7 +97,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthSlider == null)
         {
-            healthSlider = GameObject.Find("HeartSlider").GetComponent<Slider>();
+            healthSlider = GameObject.Find("HeartSliderPlayer").GetComponent<Slider>();
         }
         healthSlider.maxValue = maxHealth; 
         healthSlider.value = currentHealth; 

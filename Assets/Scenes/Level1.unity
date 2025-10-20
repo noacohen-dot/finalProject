@@ -503,7 +503,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1229030234}
-  - {fileID: 483706201}
+  - {fileID: 775506667}
   - {fileID: 1250244072}
   - {fileID: 136147111}
   - {fileID: 1412882217}
@@ -648,6 +648,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bird6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1007,7 +1017,7 @@ GameObject:
   - component: {fileID: 131226804}
   - component: {fileID: 131226805}
   m_Layer: 5
-  m_Name: HeartSlider
+  m_Name: HeartSliderPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61606,6 +61616,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1272168184689633580, guid: f8706506c1a1ac34f88d6cf0415c758f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6322837110851338053, guid: f8706506c1a1ac34f88d6cf0415c758f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -61656,7 +61671,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7046443022760491279, guid: f8706506c1a1ac34f88d6cf0415c758f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -61867,17 +61883,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bird5
       objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb70f4df6b132f40bc973e59355859a, type: 3}
---- !u!4 &483706201 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 645329821660348296, guid: 5bb70f4df6b132f40bc973e59355859a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1415643866}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &518606348
 GameObject:
   m_ObjectHideFlags: 0
@@ -62103,7 +62123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07684866b2cfbc246b5830995ba2b0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   cameraDistanceZ: -10
 --- !u!1 &554171231
 GameObject:
@@ -62124,7 +62143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &554171232
 RectTransform:
   m_ObjectHideFlags: 0
@@ -62142,7 +62161,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 309, y: -284}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 479.38, y: 119.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &554171233
 MonoBehaviour:
@@ -62257,7 +62276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 554171233}
-  victoryScore: 8
+  victoryScore: 20
   victoryText: {fileID: 143504739}
   victoryPanel: {fileID: 1567730920}
 --- !u!114 &554171236
@@ -83418,7 +83437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 590295191}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: HealthBarPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83542,6 +83561,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom4
       objectReference: {fileID: 0}
+    - target: {fileID: 1272168184689633580, guid: f8706506c1a1ac34f88d6cf0415c758f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6322837110851338053, guid: f8706506c1a1ac34f88d6cf0415c758f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -83592,7 +83616,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7046443022760491279, guid: f8706506c1a1ac34f88d6cf0415c758f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -83819,6 +83844,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2055102311959635375, guid: 413081fc53a78a043b38591243616398,
     type: 3}
   m_PrefabInstance: {fileID: 1182804451}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &775506667 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 645329821660348296, guid: 5bb70f4df6b132f40bc973e59355859a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1383300934}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &844609704
 GameObject:
@@ -84102,6 +84133,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bird7
       objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -84119,6 +84160,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mushroom5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272168184689633580, guid: f8706506c1a1ac34f88d6cf0415c758f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6322837110851338053, guid: f8706506c1a1ac34f88d6cf0415c758f,
         type: 3}
@@ -84170,7 +84216,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7046443022760491279, guid: f8706506c1a1ac34f88d6cf0415c758f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -84403,7 +84450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1117598378
 Transform:
   m_ObjectHideFlags: 0
@@ -84844,13 +84891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1346517373}
---- !u!4 &1412882217 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 645329821660348296, guid: 5bb70f4df6b132f40bc973e59355859a,
-    type: 3}
-  m_PrefabInstance: {fileID: 450135488}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1415643866
+--- !u!1001 &1383300934
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -84861,12 +84902,12 @@ PrefabInstance:
     - target: {fileID: 645329821660348296, guid: 5bb70f4df6b132f40bc973e59355859a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.623978
+      value: 11.89
       objectReference: {fileID: 0}
     - target: {fileID: 645329821660348296, guid: 5bb70f4df6b132f40bc973e59355859a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.011929
+      value: -4.89
       objectReference: {fileID: 0}
     - target: {fileID: 645329821660348296, guid: 5bb70f4df6b132f40bc973e59355859a,
         type: 3}
@@ -84911,13 +84952,29 @@ PrefabInstance:
     - target: {fileID: 8071209374099061758, guid: 5bb70f4df6b132f40bc973e59355859a,
         type: 3}
       propertyPath: m_Name
-      value: Bird1
+      value: Bird5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb70f4df6b132f40bc973e59355859a, type: 3}
+--- !u!4 &1412882217 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 645329821660348296, guid: 5bb70f4df6b132f40bc973e59355859a,
+    type: 3}
+  m_PrefabInstance: {fileID: 450135488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1445419033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84929,12 +84986,12 @@ PrefabInstance:
     - target: {fileID: 645329821660348296, guid: 5bb70f4df6b132f40bc973e59355859a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.032344
+      value: -3.53
       objectReference: {fileID: 0}
     - target: {fileID: 645329821660348296, guid: 5bb70f4df6b132f40bc973e59355859a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.18852
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 645329821660348296, guid: 5bb70f4df6b132f40bc973e59355859a,
         type: 3}
@@ -84981,6 +85038,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bird3
       objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -84998,6 +85065,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mushroom7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272168184689633580, guid: f8706506c1a1ac34f88d6cf0415c758f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6322837110851338053, guid: f8706506c1a1ac34f88d6cf0415c758f,
         type: 3}
@@ -85049,7 +85121,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7046443022760491279, guid: f8706506c1a1ac34f88d6cf0415c758f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -85308,7 +85381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 554171233}
-  victoryScore: 5
+  victoryScore: 20
   victoryText: {fileID: 143504739}
   victoryPanel: {fileID: 1567730920}
 --- !u!1001 &1571946350
@@ -85373,6 +85446,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bird4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -85525,6 +85608,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom6
       objectReference: {fileID: 0}
+    - target: {fileID: 1272168184689633580, guid: f8706506c1a1ac34f88d6cf0415c758f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6322837110851338053, guid: f8706506c1a1ac34f88d6cf0415c758f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -85575,7 +85663,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7046443022760491279, guid: f8706506c1a1ac34f88d6cf0415c758f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -86793,8 +86882,8 @@ Transform:
   m_GameObject: {fileID: 7533055931731875653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5455, y: 11.9549, z: 0}
-  m_LocalScale: {x: 10.030121, y: 9.238194, z: 0.88215}
+  m_LocalPosition: {x: 1.648, y: 12.3703, z: 0}
+  m_LocalScale: {x: 14.923262, y: 11.834164, z: 0.88215}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4746684368883963604}
@@ -86927,7 +87016,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.003969116, y: -0.054947123}
+  m_Offset: {x: 0.003969118, y: -0.083299756}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -86937,7 +87026,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.12845248, y: 0.21423766}
+  m_Size: {x: 0.12845248, y: 0.114328116}
   m_EdgeRadius: 0
 --- !u!212 &6095050169313733108
 SpriteRenderer:
@@ -87152,6 +87241,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bird2
       objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129245611658083657, guid: 5bb70f4df6b132f40bc973e59355859a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -87169,6 +87268,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mushroom1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272168184689633580, guid: f8706506c1a1ac34f88d6cf0415c758f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6322837110851338053, guid: f8706506c1a1ac34f88d6cf0415c758f,
         type: 3}
@@ -87220,7 +87324,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7046443022760491279, guid: f8706506c1a1ac34f88d6cf0415c758f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

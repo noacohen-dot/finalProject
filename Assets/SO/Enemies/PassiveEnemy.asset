@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f744bad1c36b514b8ee0c4e588fe423, type: 3}
-  m_Name: Staff
+  m_Script: {fileID: 11500000, guid: dde4ee473385a234d8c8e7b6f82157a0, type: 3}
+  m_Name: PassiveEnemy
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 4757173681084558347, guid: 1cc2efdd18952294dad3d35a4a6538d8,
-    type: 3}
-  weaponCoolDown: 0.9
+  moveSpeed: 5
+  maxHealth: 2

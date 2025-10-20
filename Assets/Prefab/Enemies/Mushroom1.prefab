@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4926572459744943997}
   - component: {fileID: 1295645388317621354}
   - component: {fileID: 358171978400786001}
-  - component: {fileID: 7046443022760491279}
   m_Layer: 0
   m_Name: Mushroom1
   m_TagString: enemy
@@ -201,7 +200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6003d8d12516eb40aa509d5eb3088ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roamTimerDelay: 2
+  enemyType: 0
+  roamDirectionChangeDelay: 2
+  roamRangeX: 1
+  roamRangeY: 1
+  attackRange: 5
+  attackCooldown: 2
+  stopWhileAttacking: 0
 --- !u!114 &358171978400786001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,18 +219,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb000297422d0c428cc31e6a1defbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
---- !u!114 &7046443022760491279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272168184689633580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87fb64e5dcf67c8458ce43409c5f07d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesData: {fileID: 11400000, guid: a6254e5d17bc4cf47ae53a197758d8f6, type: 2}
-  delayForDestroy: 0.5
+  enemyData: {fileID: 0}
