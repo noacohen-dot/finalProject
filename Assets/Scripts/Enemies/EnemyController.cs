@@ -15,8 +15,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float roamRangeY = 1f;
 
     [Header("Combat Settings")]
-    [SerializeField] private float attackRange = 5f;
-    [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private float attackRange = 15f;
+    [SerializeField] private float attackCooldown = 1f;
     [SerializeField] private bool stopWhileAttacking = false;
     [SerializeField] private IEnemy enemyBehavior; 
     private enum EnemyState
@@ -27,8 +27,9 @@ public class EnemyController : MonoBehaviour
     public enum EnemyType
     {
         Passive,
-        Aggressive,
-        Ranged
+        Chaser
+
+        
     }
 
     private EnemyState currentState;
@@ -100,15 +101,13 @@ public class EnemyController : MonoBehaviour
             currentState = EnemyState.Roaming;
             return;
         }
-
-        if (attackRange != 0 && canAttack)
+        if (canAttack)
         {
             canAttack = false;
-            enemyBehavior?.Attack(); 
+
+            enemyBehavior?.Attack(); // הרדיפה הקצרה
             if (stopWhileAttacking)
                 enemyMove.StopMoving();
-            else
-                enemyMove.MoveTo(roamTarget);
 
             StartCoroutine(AttackCooldownRoutine());
         }
@@ -121,7 +120,9 @@ public class EnemyController : MonoBehaviour
             case EnemyType.Passive:
                 enemyBehavior = GetComponent<PassiveEnemy>();
                 break;
-            
+            case EnemyType.Chaser:
+                enemyBehavior = GetComponent<ChaserEnemy>();
+                break;
             default:
                 Debug.LogWarning($"No behavior found for enemy type: {enemyType}");
                 break;
