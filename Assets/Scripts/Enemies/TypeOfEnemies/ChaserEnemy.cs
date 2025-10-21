@@ -16,7 +16,7 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
         enemyMove = GetComponent<EnemyMove>();
         if (enemyMove == null)
         {
-            Debug.LogError("Missing EnemyMove component!");
+            Debug.LogError("EnemyMove is null!");
         }
 
         player = FindFirstObjectByType<PlayerMove>();
@@ -26,7 +26,7 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
         }
         else
         {
-            Debug.LogError("PlayerMove not found in scene!");
+            Debug.LogError("PlayerMove is null!");
         }
         sprite = GetComponent<SpriteRenderer>();
         if (sprite == null)

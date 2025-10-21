@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("enemy"))
+        if (other.gameObject.CompareTag("enemy") || other.gameObject.CompareTag("FireBall") || other.gameObject.CompareTag("Flower"))
         {
             sprite.color = Color.red;
             TakeDamage(1);

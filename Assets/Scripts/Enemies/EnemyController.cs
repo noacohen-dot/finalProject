@@ -27,9 +27,9 @@ public class EnemyController : MonoBehaviour
     public enum EnemyType
     {
         Passive,
-        Chaser
+        Chaser,
+        FlowerTrap
 
-        
     }
 
     private EnemyState currentState;
@@ -105,7 +105,7 @@ public class EnemyController : MonoBehaviour
         {
             canAttack = false;
 
-            enemyBehavior?.Attack(); // הרדיפה הקצרה
+            enemyBehavior?.Attack(); 
             if (stopWhileAttacking)
                 enemyMove.StopMoving();
 
@@ -122,6 +122,9 @@ public class EnemyController : MonoBehaviour
                 break;
             case EnemyType.Chaser:
                 enemyBehavior = GetComponent<ChaserEnemy>();
+                break;
+            case EnemyType.FlowerTrap:
+                enemyBehavior = GetComponent<FlowerTrapEnemy>();
                 break;
             default:
                 Debug.LogWarning($"No behavior found for enemy type: {enemyType}");
