@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 5628579633238506987}
   - component: {fileID: 7656518495912356416}
   m_Layer: 0
-  m_Name: FireTrapEnemy
+  m_Name: FlowerTrapEnemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

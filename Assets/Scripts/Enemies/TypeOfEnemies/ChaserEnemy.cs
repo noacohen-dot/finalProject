@@ -4,12 +4,11 @@ using System.Collections;
 
 public class ChaserEnemy : MonoBehaviour, IEnemy
 {
-    private Transform target;
-    private PlayerMove player;
     private EnemyMove enemyMove;
     private Color originalColor;
     SpriteRenderer sprite;
     private float flashDuration = 0.5f;
+    private Vector3 lastKnownPlayerPosition;
 
     private void Start()
     {
@@ -18,28 +17,25 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
         {
             Debug.LogError("EnemyMove is null!");
         }
-
-        player = FindFirstObjectByType<PlayerMove>();
-        if (player != null)
-        {
-            target = player.transform;
-        }
-        else
-        {
-            Debug.LogError("PlayerMove is null!");
-        }
         sprite = GetComponent<SpriteRenderer>();
         if (sprite == null)
         {
             Debug.LogError("SpriteRenderer is null");
         }
         originalColor = sprite.color;
+        Events.OnPlayerPositionChanged += HandlePlayerPositionChanged;
+    }
+    private void HandlePlayerPositionChanged(Vector3 newPosition)
+    {
+        lastKnownPlayerPosition = newPosition;
     }
 
     public void Attack()
     {
-        if (target == null || enemyMove == null) return;
-        Vector2 direction = (target.position - transform.position).normalized;
+        if (enemyMove == null) return;
+        if (lastKnownPlayerPosition == Vector3.zero)
+            return;
+        Vector2 direction = (lastKnownPlayerPosition - transform.position).normalized;
         enemyMove.MoveTo(direction);
         sprite.color = Color.blue;
         StartCoroutine(FlashRed());
@@ -49,5 +45,10 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
         sprite.color = Color.blue;
         yield return new WaitForSeconds(flashDuration);
         sprite.color = originalColor;
+    }
+    private void OnDestroy()
+    {
+        Events.OnPlayerPositionChanged -= HandlePlayerPositionChanged;
+
     }
 }

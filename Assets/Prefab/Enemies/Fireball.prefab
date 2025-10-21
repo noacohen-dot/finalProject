@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4744727822898273281}
   - component: {fileID: 848146746577080557}
   - component: {fileID: 6111269794949536068}
+  - component: {fileID: 8533473725681154432}
+  - component: {fileID: -9170002034824836057}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: FireBall
@@ -29,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -100,7 +102,7 @@ Animator:
   m_GameObject: {fileID: 4078202712572184955}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8c5c26df054342948bd8e7c39c9e9636, type: 2}
+  m_Controller: {fileID: 9100000, guid: 03654239106a19f43a91dbd9a4586c09, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -158,3 +160,42 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.375, y: 1.378768}
   m_EdgeRadius: 0
+--- !u!50 &8533473725681154432
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4078202712572184955}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &-9170002034824836057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4078202712572184955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b5be15644a9154faec701c594dfb72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

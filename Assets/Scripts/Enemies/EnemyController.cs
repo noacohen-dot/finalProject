@@ -28,13 +28,12 @@ public class EnemyController : MonoBehaviour
     {
         Passive,
         Chaser,
-        FlowerTrap
-
+        FlowerTrap,
+        Shooter
     }
-
+    private Vector3 lastKnownPlayerPosition;
     private EnemyState currentState;
     private EnemyMove enemyMove;
-    private PlayerMove player;
     private Vector2 roamTarget;
     private float roamTimer = 0f;
 
@@ -42,7 +41,6 @@ public class EnemyController : MonoBehaviour
     {
         currentState = EnemyState.Roaming;
     }
-
     private void Start()
     {
         enemyMove = GetComponent<EnemyMove>();
@@ -50,16 +48,14 @@ public class EnemyController : MonoBehaviour
         {
             Debug.LogError("EnemyMove component is missing!");
         }
-
-        player = FindFirstObjectByType<PlayerMove>();
-        if (player == null)
-        {
-            Debug.LogError("PlayerMove not found in scene!");
-        }
         AssignEnemyBehavior();
         roamTarget = GetRandomRoamTarget();
+        Events.OnPlayerPositionChanged += HandlePlayerPositionChanged;
     }
-
+    private void HandlePlayerPositionChanged(Vector3 newPosition)
+    {
+        lastKnownPlayerPosition = newPosition;
+    }
     private void Update()
     {
         HandleState();
@@ -83,7 +79,7 @@ public class EnemyController : MonoBehaviour
         roamTimer += Time.deltaTime;
         enemyMove.MoveTo(roamTarget);
 
-        if (Vector2.Distance(transform.position, player.transform.position) < attackRange)
+        if (Vector2.Distance(transform.position, lastKnownPlayerPosition) < attackRange)
         {
             currentState = EnemyState.Attacking;
         }
@@ -96,7 +92,7 @@ public class EnemyController : MonoBehaviour
 
     private void HandleAttacking()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) > attackRange)
+        if (Vector2.Distance(transform.position, lastKnownPlayerPosition) > attackRange)
         {
             currentState = EnemyState.Roaming;
             return;
@@ -126,6 +122,9 @@ public class EnemyController : MonoBehaviour
             case EnemyType.FlowerTrap:
                 enemyBehavior = GetComponent<FlowerTrapEnemy>();
                 break;
+            case EnemyType.Shooter:
+                enemyBehavior=GetComponent<ShooterEnemy>();
+                break;
             default:
                 Debug.LogWarning($"No behavior found for enemy type: {enemyType}");
                 break;
@@ -147,5 +146,9 @@ public class EnemyController : MonoBehaviour
     {
         roamTimer = 0f;
         return new Vector2(Random.Range(-roamRangeX, roamRangeX),Random.Range(-roamRangeY, roamRangeY)).normalized;
+    }
+    private void OnDestroy()
+    {
+        Events.OnPlayerPositionChanged -= HandlePlayerPositionChanged;
     }
 }
