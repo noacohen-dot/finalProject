@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro; 
+using TMPro;
+using Unity.VisualScripting;
 
 
 public class PlayerHealth : MonoBehaviour
@@ -36,14 +37,37 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("enemy") || other.gameObject.CompareTag("FireBall") || other.gameObject.CompareTag("Flower"))
+        if (other.gameObject.CompareTag("enemy"))
         {
             sprite.color = Color.red;
             TakeDamage(1);
             StartCoroutine(FlashRed());
         }
+        
     }
+    public void HealPlayer(int healAmount)
+    {
+        currentHealth += healAmount;
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
 
+        UpdateHealthSlider();
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Flower"))
+        {
+            sprite.color = Color.red;
+            TakeDamage(1);
+            StartCoroutine(FlashRed());
+        }
+        else if (other.gameObject.CompareTag("Heart"))
+        {
+            HealPlayer(1);
+            Destroy(other.gameObject);
+        }
+    }
+    
     private IEnumerator FlashRed()
     {
         sprite.color = Color.red;

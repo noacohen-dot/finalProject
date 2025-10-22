@@ -25,7 +25,15 @@ public class EnemyMove : MonoBehaviour
             Debug.LogError("SpriteRenderer is null");
         }
     }
-
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("enemy") || other.collider.CompareTag("boundaryWall"))
+        {
+            Vector2 pushDir = other.contacts[0].normal;
+            rb.MovePosition(rb.position + pushDir * 0.2f);
+            StopMoving();
+        }
+    }
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveDir * (enemyData.MoveSpeed * Time.fixedDeltaTime));

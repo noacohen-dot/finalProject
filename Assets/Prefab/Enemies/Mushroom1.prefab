@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3807988506719809681}
   - component: {fileID: 4668298409581109393}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HeartSliderEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7264866036391122888}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 2995300413707713014}
   - component: {fileID: 1293384809837787678}
   - component: {fileID: 7420195937388330628}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 358171978400786001}
   - component: {fileID: 286186324194116833}
   - component: {fileID: 4568224201305108069}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mushroom1
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 7321052251102015442}
   - component: {fileID: 1317091894946199758}
   - component: {fileID: 1094768806079227046}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5960778853478804792}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HealthBarEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 991098856450883949}
   - component: {fileID: 3551071083116842158}
   - component: {fileID: 8370641375232265338}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

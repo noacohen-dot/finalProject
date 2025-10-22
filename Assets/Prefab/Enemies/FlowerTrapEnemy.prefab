@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3793476443258428748}
   - component: {fileID: 1776716645837405468}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HeartSliderEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,8 +98,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2987553006600916412}
-  m_Layer: 0
-  m_Name: PivotFireBall
+  m_Layer: 7
+  m_Name: PivotFlower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2275298912241485878}
   - component: {fileID: 5314009777671326909}
   - component: {fileID: 8032218993439585407}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 5325897444032843010}
   - component: {fileID: 1108181688676503888}
   - component: {fileID: 6796024464501938155}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6437712732578942516}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 7027080948692748238}
   - component: {fileID: 8332435718748103652}
   - component: {fileID: 5885015232041462432}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 7423834761443808671}
   - component: {fileID: 5628579633238506987}
   - component: {fileID: 7656518495912356416}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FlowerTrapEnemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -659,11 +659,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8352449ec971b468d8509895ccfd40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireballPrefab: {fileID: 4078202712572184955, guid: 5b7e6db389e4d244891646314f78d717,
+  FlowerPrefab: {fileID: 5542665065209620303, guid: 042e2f827894fc441a2d3542d00d3590,
     type: 3}
-  pivotFireBall: {fileID: 2987553006600916412}
-  bulletLifetime: 10
-  fireDelay: 4
+  pivotFlower: {fileID: 2987553006600916412}
+  flowerLifetime: 10
+  flowereDelay: 4
 --- !u!1 &6668813114022270369
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7128872631164349338}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HealthBarEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

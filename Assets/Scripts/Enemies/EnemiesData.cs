@@ -1,10 +1,12 @@
 using UnityEngine;
+using static EnemyController;
 
 [CreateAssetMenu(fileName = "EnemiesData", menuName = "Scriptable Objects/EnemiesData")]
 public class EnemiesData : ScriptableObject
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private int maxHealth;
+    public EnemyType EnemyType;
     public float MoveSpeed
     {
         get => moveSpeed;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2778676273932087256}
   - component: {fileID: 6680545420523539723}
   - component: {fileID: 5467370983734790145}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flower
   m_TagString: Flower
   m_Icon: {fileID: 0}
@@ -120,11 +120,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.03469324, y: -0.023128986}
+  m_Offset: {x: -0.07328445, y: -0.08101511}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -134,7 +134,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.0979595, y: 1.8721104}
+  m_Size: {x: 1.4033171, y: 1.3704233}
   m_EdgeRadius: 0
 --- !u!95 &5467370983734790145
 Animator:

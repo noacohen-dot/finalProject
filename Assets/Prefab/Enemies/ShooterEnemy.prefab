@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9025978853674199729}
   - component: {fileID: 1551543034781991180}
   - component: {fileID: 1836437188011872728}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1173738881692200157}
   - component: {fileID: 7750575201712319395}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HeartSliderEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9141170790996051116}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 6130578800807908506}
   - component: {fileID: 4599440637838195412}
   - component: {fileID: 5994393834994238806}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3270501310169090584}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PivotFireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1254816702667579328}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HealthBarEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 1011797915746509839}
   - component: {fileID: 2363822300862458547}
   - component: {fileID: 1178437995530175557}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShooterEnemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -9021820611684853211, guid: 761cb6193fc28134593f8eb255f4bf89,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2, y: 3}
@@ -498,7 +498,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1899551f0c719fe4fb00c9afd2264753, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -586,6 +586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b932d29174f55404baed88ba2181f67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartPrefab: {fileID: 7376943803174315998, guid: e75953ad28f52434b99a90ea15f11100,
+    type: 3}
   damageRecoveryTime: 1
   healthSlider: {fileID: 7750575201712319395}
   enemyData: {fileID: 11400000, guid: 4afcfb059d6453247bfb5a85d5169dc4, type: 2}
@@ -637,7 +639,7 @@ GameObject:
   - component: {fileID: 4303149179390418036}
   - component: {fileID: 6658652813231776788}
   - component: {fileID: 6538189047821779091}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

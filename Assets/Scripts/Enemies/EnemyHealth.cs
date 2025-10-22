@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static EnemyController;
 
 public class EnemyHealth : MonoBehaviour
 {
-   
+    [SerializeField] private GameObject heartPrefab;
     [SerializeField] private float damageRecoveryTime = 1f;
     [SerializeField] private Slider healthSlider;
     private int currentHealth;
@@ -86,6 +87,10 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            if (enemyData.EnemyType == EnemyType.Shooter && heartPrefab != null)
+            {
+                Instantiate(heartPrefab, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }

@@ -4,6 +4,7 @@ using static EnemyController;
 
 public class EnemyController : MonoBehaviour
 {
+
     [Header("Enemy Settings")]
     [SerializeField] private EnemyType enemyType;
     

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde4ee473385a234d8c8e7b6f82157a0, type: 3}
   m_Name: Shooter
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 5
   maxHealth: 2

@@ -26,4 +26,5 @@ public class FlowerTrapEnemy : MonoBehaviour,IEnemy
         Destroy(bullet, flowerLifetime);
         yield return new WaitForSeconds(flowereDelay);
     }
+
 }
