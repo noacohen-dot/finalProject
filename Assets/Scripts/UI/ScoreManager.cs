@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        scoreText.text = $"Score: {score}/{victoryScore}";
+        scoreText.text = $"{score}/{victoryScore}";
         Events.OnScoreUpdate += UpdateScore;
     } 
 
@@ -23,7 +23,7 @@ public class ScoreManager : MonoBehaviour
     {
         score += scoreAdd;
         if (score < 0) score = 0;
-        scoreText.text = $"Score: {score}/{victoryScore}";
+        scoreText.text = $"{score}/{victoryScore}";
         if (score >= victoryScore)
         {
             ShowVictoryMessage();
@@ -37,7 +37,7 @@ public class ScoreManager : MonoBehaviour
             Time.timeScale = 0;
             victoryText.gameObject.SetActive(true);
             victoryPanel.gameObject.SetActive(true);
-            victoryText.text = "Good-Job";
+            victoryText.text = "YOU-WIN!";
             StartCoroutine(ReturnToFirstScene());
         }
     }
