@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a276ffe90d3189418320540a281e95c, type: 3}
-  m_Name: BowArrow
+  m_Script: {fileID: 11500000, guid: bd5f4de259a9aa3449c5aafafc95bfec, type: 3}
+  m_Name: InPauseGame
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 8693916851282330027, guid: 316b5cea8dbbe614ab8234444cf27694,
-    type: 3}
-  moveSpeedProjectile: 15
+  canMove: 0
+  canMenu: 1

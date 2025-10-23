@@ -12,6 +12,8 @@ TagManager:
   - Flower
   - boundaryWall
   - Heart
+  - ArrowBow
+  - ArrowMagicSword
   layers:
   - Default
   - TransparentFX
