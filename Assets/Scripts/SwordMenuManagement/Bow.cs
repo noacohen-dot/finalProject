@@ -7,21 +7,15 @@ public class Bow : MonoBehaviour, IWeapon
     [SerializeField] private WeaponInfo weaponInfo;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowSpawnPoint;
-    private Animator myAnimator;
     private float flipRotationY = -180f;
     private float normalRotationY = 0f;
     private float rotationX = 0f;
     private Vector3 playerPosition;
-    readonly int fireHash = Animator.StringToHash("Fire");
     private Vector3 mouseWorldPosition;
 
     void Start()
     {
-        myAnimator = GetComponent<Animator>();
-        if (myAnimator == null)
-        {
-            Debug.LogError("Animator is null");
-        }
+       
         Events.OnPlayerPositionChanged += UpdatePlayerPosition;
         Events.OnMousePositionChanged += UpdateMousePosition;
     }
@@ -35,8 +29,7 @@ public class Bow : MonoBehaviour, IWeapon
     }
     public void Attack()
     {
-        myAnimator.SetTrigger(fireHash);
-        GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, ActiveWeapon.Instance.transform.rotation);
+        GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, arrowSpawnPoint.rotation);
     }
     public WeaponInfo GetWeaponInfo()
     {

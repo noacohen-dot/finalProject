@@ -8,5 +8,8 @@ public static class Events
     public static Action<Vector2> OnPlayerMoveInputChanged;
     public static Action<Vector3> OnMousePositionChanged;
     public static Action<Camera> OnCameraUpdated;
+    public static Action<GameState> OnStateEnter;
+    public static Action<GameState> OnStateExit;
+    public static Func<GameState> OnGetCurrentState;
 
 }

@@ -38,23 +38,27 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Sword"))
         {
-            TakeDamageEffect();
+            TakeDamageEffect(1);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Arrow"))
+        if (other.gameObject.CompareTag("ArrowBow"))
         {
-            TakeDamageEffect();
+            TakeDamageEffect(1);
+        }
+        else if(other.gameObject.CompareTag("ArrowMagicSword"))
+        {
+            TakeDamageEffect(2);
         }
     }
 
-    private void TakeDamageEffect()
+    private void TakeDamageEffect(int damage)
     {
         sprite.color = Color.red;
         transform.localScale = originalScale * 0.7f; 
-        TakeDamage(1);
+        TakeDamage(damage);
         StartCoroutine(FlashRed());
         StartCoroutine(RestoreScale());
     }
