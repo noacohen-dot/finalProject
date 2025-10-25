@@ -6,7 +6,7 @@ using static EnemyController;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private GameObject heartPrefab;
-    [SerializeField] private float damageRecoveryTime = 1f;
+    [SerializeField] private float damageRecoveryTime = 0.5f;
     [SerializeField] private Slider healthSlider;
     private int currentHealth;
     private bool canTakeDamage = true;
@@ -14,6 +14,11 @@ public class EnemyHealth : MonoBehaviour
     private Color originalColor;
     private float flashDuration = 0.3f;
     private Vector3 originalScale;
+    private int swordAndBowDamage = 1;
+    private int magicArrowDamage = 2;
+    private float damageScale = 0.7f;
+    private float scaleRestoreDelay = 0.3f;
+    private const int minHealth = 0;
 
     [Header("Enemy Settings")]
     [SerializeField] private EnemiesData enemyData;
@@ -38,7 +43,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Sword"))
         {
-            TakeDamageEffect(1);
+            TakeDamageEffect(swordAndBowDamage);
         }
     }
 
@@ -46,18 +51,18 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ArrowBow"))
         {
-            TakeDamageEffect(1);
+            TakeDamageEffect(swordAndBowDamage);
         }
         else if(other.gameObject.CompareTag("ArrowMagicSword"))
         {
-            TakeDamageEffect(2);
+            TakeDamageEffect(magicArrowDamage);
         }
     }
 
     private void TakeDamageEffect(int damage)
     {
         sprite.color = Color.red;
-        transform.localScale = originalScale * 0.7f; 
+        transform.localScale = originalScale * damageScale; 
         TakeDamage(damage);
         StartCoroutine(FlashRed());
         StartCoroutine(RestoreScale());
@@ -71,7 +76,7 @@ public class EnemyHealth : MonoBehaviour
 
     private IEnumerator RestoreScale()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(scaleRestoreDelay);
         transform.localScale = originalScale;
     }
 
@@ -88,9 +93,9 @@ public class EnemyHealth : MonoBehaviour
 
     private void CheckIfEnemyDead()
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= minHealth)
         {
-            currentHealth = 0;
+            currentHealth = minHealth;
             if (enemyData.EnemyType == EnemyType.Shooter && heartPrefab != null)
             {
                 Instantiate(heartPrefab, transform.position, Quaternion.identity);

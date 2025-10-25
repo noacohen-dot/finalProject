@@ -20,8 +20,11 @@ public class PlayerHealth : MonoBehaviour
     SpriteRenderer sprite;
     private Color originalColor;
     private float flashDuration = 0.5f;
-
-
+    private int defaultDamage = 1;
+    private int defaultHealAmount = 1;
+    private int zeroHealth = 0;
+    private float pausedTimeScale = 0f;
+    private float normalTimeScale = 1f;
 
     private void Start()
     {
@@ -40,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.CompareTag("enemy"))
         {
             sprite.color = Color.red;
-            TakeDamage(1);
+            TakeDamage(defaultDamage);
             StartCoroutine(FlashRed());
         }
         
@@ -58,12 +61,12 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.CompareTag("Flower"))
         {
             sprite.color = Color.red;
-            TakeDamage(1);
+            TakeDamage(defaultDamage);
             StartCoroutine(FlashRed());
         }
         else if (other.gameObject.CompareTag("Heart"))
         {
-            HealPlayer(1);
+            HealPlayer(defaultHealAmount);
             Destroy(other.gameObject);
         }
     }
@@ -88,9 +91,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void CheckIfPlayerDeath()
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= zeroHealth)
         {
-            currentHealth = 0;
+            currentHealth = zeroHealth;
             StartCoroutine(HandlePlayerDeath());
         }
     }
@@ -104,9 +107,9 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("player death");
         }
 
-        Time.timeScale = 0; 
+        Time.timeScale = pausedTimeScale; 
         yield return new WaitForSecondsRealtime(delayBeforeReturn); 
-        Time.timeScale = 1;
+        Time.timeScale = normalTimeScale;
         SceneManager.LoadScene("StartScene");
     }
 

@@ -6,6 +6,7 @@ public class PlayerKillCounterUi : MonoBehaviour
     [SerializeField] private TextMeshProUGUI killText;
     [SerializeField] private int killsToTreasure = 10;
     [SerializeField] private int currentKills = 0;
+    private int resetKillCountValue = 0;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class PlayerKillCounterUi : MonoBehaviour
 
     private void HandleTreasureCollected()
     {
-        currentKills = 0;
+        currentKills = resetKillCountValue;
         UpdateText();
     }
 

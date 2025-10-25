@@ -40,7 +40,11 @@ public class PlayerMove : MonoBehaviour
         inputActions.Player.Move.performed += OnMovePerormed;
         inputActions.Player.Move.canceled += OnMoveCanceled;
     }
-
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = moveInput * speed;
+        Events.OnPlayerPositionChanged?.Invoke(transform.position);
+    }
     private void OnMovePerormed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<Vector2>(); 
@@ -57,19 +61,13 @@ public class PlayerMove : MonoBehaviour
         }
         Events.OnPlayerMoveInputChanged?.Invoke(moveInput);
     }
-    private void OnMoveCanceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void OnMoveCanceled(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
         moveInput = Vector2.zero;
         animator.SetBool("IsWalking", false);
         animator.SetFloat("LastInputX", lastMoveDirection.x);
         animator.SetFloat("LastInputY", lastMoveDirection.y);
         Events.OnPlayerMoveInputChanged?.Invoke(Vector2.zero);
-    }
-
-    private void FixedUpdate()
-    {
-        rb.linearVelocity = moveInput * speed;
-        Events.OnPlayerPositionChanged?.Invoke(transform.position);
     }
     private void OnDisable()
     {

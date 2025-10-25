@@ -36,10 +36,10 @@ public class ShooterEnemy : MonoBehaviour, IEnemy
             yield break;
         }
 
-        Vector2 direction = (lastKnownPlayerPosition 
-            - pivotFire.position).normalized;
+        Vector2 direction = (lastKnownPlayerPosition - pivotFire.position).normalized;
         Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
         GameObject bullet = Instantiate(fireBallPrefab, pivotFire.position, rotation);
+
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.linearVelocity = direction * bulletSpeed;

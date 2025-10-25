@@ -20,20 +20,14 @@ public class FlowerTrapEnemy : MonoBehaviour, IEnemy
     private IEnumerator ShootCoroutine()
     {
         isAttacking = true;
-
         if (flowerPrefab == null || pivotFlower == null)
         {
             Debug.LogError("FlowerPrefab or pivotFlower is null!");
             yield break;
         }
-
-        // יוצרת את "המלכודת" (הפרח)
         GameObject flower = Instantiate(flowerPrefab, pivotFlower.position, Quaternion.identity);
         Destroy(flower, flowerLifetime);
-
-        // נחכה זמן קצר כדי שלא ייצור שוב מיד
         yield return new WaitForSeconds(flowerDelay);
-
         isAttacking = false;
     }
 }

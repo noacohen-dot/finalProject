@@ -20,7 +20,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackRange = 15f;
     [SerializeField] private float attackCooldown = 1f;
     [SerializeField] private bool stopWhileAttacking = false;
-    [SerializeField] private IEnemy enemyBehavior; 
+    [SerializeField] private IEnemy enemyBehavior;
+
+    private float flowerTrapRoamDelay = 1f;
+    private float roamTimerResetValue = 0f;
+
     private enum EnemyState
     {
         Roaming,
@@ -132,12 +136,11 @@ public class EnemyController : MonoBehaviour
             enemyBehavior?.Attack(); 
             if (stopWhileAttacking)
                 enemyMove.StopMoving();
-
             StartCoroutine(AttackCooldownRoutine());
         }
         if (enemyType == EnemyType.FlowerTrap && !canAttack)
         {
-            StartCoroutine(ReturnToRoamAfterDelay(1f));
+            StartCoroutine(ReturnToRoamAfterDelay(flowerTrapRoamDelay));
         }
     }
 
@@ -176,16 +179,16 @@ public class EnemyController : MonoBehaviour
 
     private Vector2 GetRandomRoamTarget()
     {
-        roamTimer = 0f;
+        roamTimer = roamTimerResetValue;
         return new Vector2(Random.Range(-roamRangeX, roamRangeX),Random.Range(-roamRangeY, roamRangeY)).normalized;
-    }
-    private void OnDestroy()
-    {
-        Events.OnPlayerPositionChanged -= HandlePlayerPositionChanged;
     }
     private IEnumerator ReturnToRoamAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         currentState = EnemyState.Roaming;
+    }
+    private void OnDestroy()
+    {
+        Events.OnPlayerPositionChanged -= HandlePlayerPositionChanged;
     }
 }

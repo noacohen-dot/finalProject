@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
-    float delayBeforeReturn = 3f;
+    private int minimumScore = 0;
+    private float pausedTimeScale = 0f;
+    private float normalTimeScale = 1f;
+
+    float delayBeforeSceneReturn = 3f;
     int score = 0;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] int victoryScore = 5;
@@ -22,7 +26,7 @@ public class ScoreManager : MonoBehaviour
     private void UpdateScore(int scoreAdd)
     {
         score += scoreAdd;
-        if (score < 0) score = 0;
+        if (score < minimumScore) score = minimumScore;
         scoreText.text = $"{score}/{victoryScore}";
         if (score >= victoryScore)
         {
@@ -34,7 +38,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (victoryText != null)
         {
-            Time.timeScale = 0;
+            Time.timeScale = pausedTimeScale;
             victoryText.gameObject.SetActive(true);
             victoryPanel.gameObject.SetActive(true);
             victoryText.text = "YOU-WIN!";
@@ -44,8 +48,8 @@ public class ScoreManager : MonoBehaviour
 
     private IEnumerator ReturnToFirstScene()
     {
-        yield return new WaitForSecondsRealtime(delayBeforeReturn); 
-        Time.timeScale = 1; 
+        yield return new WaitForSecondsRealtime(delayBeforeSceneReturn); 
+        Time.timeScale = normalTimeScale; 
         SceneManager.LoadScene("StartScene");
     }
 

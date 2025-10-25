@@ -32,7 +32,6 @@ public class ChaserEnemy : MonoBehaviour, IEnemy
 
     public void Attack()
     {
-        if (enemyMove == null) return;
         if (lastKnownPlayerPosition == Vector3.zero)
             return;
         Vector2 direction = (lastKnownPlayerPosition - transform.position).normalized;
