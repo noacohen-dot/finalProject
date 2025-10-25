@@ -312,7 +312,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 1899551f0c719fe4fb00c9afd2264753, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -447,6 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b932d29174f55404baed88ba2181f67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartPrefab: {fileID: 0}
   damageRecoveryTime: 1
   healthSlider: {fileID: 4668298409581109393}
   enemyData: {fileID: 11400000, guid: 6342399fb31505d44ab26251de11d0e9, type: 2}

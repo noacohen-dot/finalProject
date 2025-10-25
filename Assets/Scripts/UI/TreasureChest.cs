@@ -12,7 +12,8 @@ public class TreasureChest : MonoBehaviour
             Events.OnScoreUpdate?.Invoke(scoreValue);
             if (collectEffect != null)
                 Instantiate(collectEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject,0.3f);
+            Events.OnTreasureCollected?.Invoke();
+            Destroy(gameObject);
         }
     }
 }

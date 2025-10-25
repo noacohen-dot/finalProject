@@ -95,6 +95,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 Instantiate(heartPrefab, transform.position, Quaternion.identity);
             }
+            Events.OnEnemyKilled?.Invoke();
             Destroy(gameObject);
         }
     }

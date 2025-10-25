@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private EnemyType enemyType;
     
     private bool canAttack = true;
+    private bool isVisibleToCamera = false;
 
     [Header("Roaming Settings")]
     [SerializeField] private float roamDirectionChangeDelay = 2f;
@@ -23,7 +24,8 @@ public class EnemyController : MonoBehaviour
     private enum EnemyState
     {
         Roaming,
-        Attacking
+        Attacking, 
+        Idle
     }
     public enum EnemyType
     {
@@ -37,11 +39,24 @@ public class EnemyController : MonoBehaviour
     private EnemyMove enemyMove;
     private Vector2 roamTarget;
     private float roamTimer = 0f;
-
+    private Renderer myRenderer;
     private void Awake()
     {
-        currentState = EnemyState.Roaming;
+        currentState = EnemyState.Idle;
     }
+
+    void OnBecameVisible()
+    {
+        if (Camera.current == Camera.main)
+            isVisibleToCamera = true;
+    }
+
+    void OnBecameInvisible()
+    {
+        if (Camera.current == Camera.main)
+            isVisibleToCamera = false;
+    }
+
     private void Start()
     {
         enemyMove = GetComponent<EnemyMove>();
@@ -49,22 +64,35 @@ public class EnemyController : MonoBehaviour
         {
             Debug.LogError("EnemyMove component is missing!");
         }
+        myRenderer = GetComponent<Renderer>();
+        if(myRenderer == null)
+        {
+            Debug.LogError("Renderer component is missing!");
+        }
         AssignEnemyBehavior();
         roamTarget = GetRandomRoamTarget();
         Events.OnPlayerPositionChanged += HandlePlayerPositionChanged;
     }
     private void HandlePlayerPositionChanged(Vector3 newPosition)
     {
+
         lastKnownPlayerPosition = newPosition;
     }
     private void Update()
     {
+        if (myRenderer != null)
+            isVisibleToCamera = myRenderer.isVisible;
         HandleState();
     }
     private void HandleState()
     {
         switch (currentState)
         {
+            case EnemyState.Idle:
+                enemyMove.StopMoving();
+                if (isVisibleToCamera)
+                    currentState = EnemyState.Roaming;
+                break;
             case EnemyState.Roaming:
                 HandleRoaming();
                 break;
@@ -84,7 +112,6 @@ public class EnemyController : MonoBehaviour
         {
             currentState = EnemyState.Attacking;
         }
-
         if (roamTimer > roamDirectionChangeDelay)
         {
             roamTarget = GetRandomRoamTarget();
