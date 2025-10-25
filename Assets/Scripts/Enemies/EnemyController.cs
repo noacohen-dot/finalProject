@@ -135,6 +135,10 @@ public class EnemyController : MonoBehaviour
 
             StartCoroutine(AttackCooldownRoutine());
         }
+        if (enemyType == EnemyType.FlowerTrap && !canAttack)
+        {
+            StartCoroutine(ReturnToRoamAfterDelay(1f));
+        }
     }
 
     private void AssignEnemyBehavior()
@@ -178,5 +182,10 @@ public class EnemyController : MonoBehaviour
     private void OnDestroy()
     {
         Events.OnPlayerPositionChanged -= HandlePlayerPositionChanged;
+    }
+    private IEnumerator ReturnToRoamAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        currentState = EnemyState.Roaming;
     }
 }

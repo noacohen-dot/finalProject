@@ -1,30 +1,39 @@
 using UnityEngine;
 using System.Collections;
 
-
-public class FlowerTrapEnemy : MonoBehaviour,IEnemy
+public class FlowerTrapEnemy : MonoBehaviour, IEnemy
 {
     [Header("FlowerTrap Settings")]
-    [SerializeField] private GameObject FlowerPrefab;
+    [SerializeField] private GameObject flowerPrefab;
     [SerializeField] private Transform pivotFlower;
     [SerializeField] private float flowerLifetime = 10f;
-    [SerializeField] private float flowereDelay = 4f;
+    [SerializeField] private float flowerDelay = 3f;
+
+    private bool isAttacking = false;
 
     public void Attack()
     {
-        StartCoroutine(ShootCoroutine());
+        if (!isAttacking)
+            StartCoroutine(ShootCoroutine());
     }
 
     private IEnumerator ShootCoroutine()
     {
-        if (FlowerPrefab == null || pivotFlower == null )
+        isAttacking = true;
+
+        if (flowerPrefab == null || pivotFlower == null)
         {
             Debug.LogError("FlowerPrefab or pivotFlower is null!");
             yield break;
         }
-        GameObject bullet = Instantiate(FlowerPrefab, pivotFlower.position, Quaternion.identity);
-        Destroy(bullet, flowerLifetime);
-        yield return new WaitForSeconds(flowereDelay);
-    }
 
+        // יוצרת את "המלכודת" (הפרח)
+        GameObject flower = Instantiate(flowerPrefab, pivotFlower.position, Quaternion.identity);
+        Destroy(flower, flowerLifetime);
+
+        // נחכה זמן קצר כדי שלא ייצור שוב מיד
+        yield return new WaitForSeconds(flowerDelay);
+
+        isAttacking = false;
+    }
 }
