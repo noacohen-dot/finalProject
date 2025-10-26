@@ -24,7 +24,7 @@ TagManager:
   - Player
   - Enemy
   - SolidWalls
-  - EnemyPassableWalls
+  - EnemyPassThrough
   - FlowerTrap
   - 
   - 
