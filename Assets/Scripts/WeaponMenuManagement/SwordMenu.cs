@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class SwordMenu : MonoBehaviour
 {
+    private int defaultSlotIndex = 0;
+    private int highlightChildIndex = 0;
+    private int keyboardInputOffset = 1;
     private int activeSlotIndexNum = 0;
     InputSystem inputActions;
     int activeWeaponPosition = 0;
 
     private void Start()
     {
-        ToggleActiveHighlight(0);
+        ToggleActiveHighlight(defaultSlotIndex);
         ChangeActiveWeapon();
     }
     private void Awake()
@@ -19,28 +22,31 @@ public class SwordMenu : MonoBehaviour
         inputActions = new();
     }
 
-
     private void OnEnable()
     {
         inputActions.SwordsMenu.Enable();
-        inputActions.SwordsMenu.Keyboard.performed += ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
+        inputActions.SwordsMenu.Keyboard.performed += OnKeyboardPerformed;
+    }
+
+    private void OnKeyboardPerformed(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+    {
+        ToggleActiveSlot((int)ctx.ReadValue<float>());
     }
 
     private void ToggleActiveSlot(int numValue)
     {
-        ToggleActiveHighlight(numValue - 1);
+        ToggleActiveHighlight(numValue - keyboardInputOffset);
     }
-
     private void ToggleActiveHighlight(int indexNum)
     {
         activeSlotIndexNum = indexNum;
 
         foreach (Transform inventorySlot in this.transform)
         {
-            inventorySlot.GetChild(0).gameObject.SetActive(false);
+            inventorySlot.GetChild(highlightChildIndex).gameObject.SetActive(false);
         }
 
-        this.transform.GetChild(indexNum).GetChild(0).gameObject.SetActive(true);
+        this.transform.GetChild(indexNum).GetChild(highlightChildIndex).gameObject.SetActive(true);
         ChangeActiveWeapon();
     }
     private void ChangeActiveWeapon()
@@ -70,7 +76,7 @@ public class SwordMenu : MonoBehaviour
     private void OnDisable()
     {
         inputActions.SwordsMenu.Disable();
-        inputActions.SwordsMenu.Keyboard.performed -= ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
+        inputActions.SwordsMenu.Keyboard.performed -= OnKeyboardPerformed;
     }
 
 }

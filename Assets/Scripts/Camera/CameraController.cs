@@ -8,8 +8,6 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         Events.OnPlayerPositionChanged += HandlePlayerPositionChanged;
-        Events.OnCameraUpdated?.Invoke(Camera.main);
-
     }
     private void HandlePlayerPositionChanged(Vector3 playerPos)
     {

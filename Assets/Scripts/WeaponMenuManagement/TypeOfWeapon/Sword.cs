@@ -14,6 +14,7 @@ public class Sword : MonoBehaviour, IWeapon
     float rotationY = 0f;
     private Vector2 lastMoveInput = Vector2.right;
     [SerializeField] private WeaponInfo weaponInfo;
+    private float flipDirectionThresholdX = 0f;
 
     void Start()
     {
@@ -46,13 +47,12 @@ public class Sword : MonoBehaviour, IWeapon
         }
     }
 
-
     private void RotateSword()
     {
         float angle = Mathf.Atan2(lastMoveInput.y, lastMoveInput.x) * Mathf.Rad2Deg;
         float rotationZ = angle;
 
-        if (lastMoveInput.x < 0)
+        if (lastMoveInput.x < flipDirectionThresholdX)
             swordPivot.transform.localRotation = Quaternion.Euler(flipRotationX, rotationY, -rotationZ);
         else
             swordPivot.transform.localRotation = Quaternion.Euler(normalRotationX, rotationY, rotationZ);

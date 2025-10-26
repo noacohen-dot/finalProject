@@ -15,7 +15,6 @@ public class Bow : MonoBehaviour, IWeapon
 
     void Start()
     {
-       
         Events.OnPlayerPositionChanged += UpdatePlayerPosition;
         Events.OnMousePositionChanged += UpdateMousePosition;
     }

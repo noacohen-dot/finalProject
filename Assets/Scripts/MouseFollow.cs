@@ -43,8 +43,7 @@ public class MouseFollow : MonoBehaviour
     private void FaceMouse()
     {
         Vector3 worldMousePos = mainCamera.ScreenToWorldPoint(
-             new Vector3(mousePosition.x, mousePosition.y, mainCamera.nearClipPlane)
-         );
+             new Vector3(mousePosition.x, mousePosition.y, mainCamera.nearClipPlane));
 
         Vector2 direction = (Vector2)(worldMousePos - transform.position);
         transform.right = direction;

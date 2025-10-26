@@ -4,46 +4,52 @@ public class EnemyKillManager : MonoBehaviour
 {
     [SerializeField] private GameObject treasureChestPrefab;
     [SerializeField] private int killsToSpawnChest = 5;
-    private Vector3 chestSpawnOffset = new Vector3(1f, 1f, 0f); 
-    [SerializeField] private Transform playerTransform;
-
+    private Vector3 chestSpawnOffset = new Vector3(1f, 1f, 0f);
+    private int resetKillCount = 0;
     private int currentKills = 0;
+    private Vector3 lastKnownPlayerPosition;
 
     private void Start()
     {
-        if (playerTransform == null)
-        {
-            var playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-                playerTransform = playerObj.transform;
-            else
-                Debug.LogWarning("EnemyKillManager: לא נמצא Player עם Tag 'Player' — יש לשבץ ידנית ב-Inspector.");
-        }
         if (treasureChestPrefab == null)
         {
-            Debug.LogError("treasureChestPrefab is null");
+            Debug.LogError("TreasureChestPrefab is null!");
         }
+
         Events.OnEnemyKilled += HandleEnemyKilled;
+        Events.OnPlayerPositionChanged += HandlePlayerPositionChanged;
     }
+
+    private void HandlePlayerPositionChanged(Vector3 playerPosition)
+    {
+        lastKnownPlayerPosition = playerPosition;
+    }
+
     private void HandleEnemyKilled()
     {
         currentKills++;
         if (currentKills >= killsToSpawnChest)
         {
-            currentKills = 0;
+            currentKills = resetKillCount;
             SpawnTreasureChestNearPlayer();
         }
     }
 
     private void SpawnTreasureChestNearPlayer()
     {
-        Vector3 spawnPos = playerTransform.position + chestSpawnOffset;
+        if (treasureChestPrefab == null)
+        {
+            Debug.LogError("Treasure chest prefab missing!");
+            return;
+        }
+
+        Vector3 spawnPos = lastKnownPlayerPosition + chestSpawnOffset;
         Instantiate(treasureChestPrefab, spawnPos, Quaternion.identity);
     }
+
     private void OnDestroy()
     {
         Events.OnEnemyKilled -= HandleEnemyKilled;
+        Events.OnPlayerPositionChanged -= HandlePlayerPositionChanged;
     }
-
 }
-

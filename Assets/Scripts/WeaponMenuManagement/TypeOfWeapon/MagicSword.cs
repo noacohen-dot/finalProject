@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Staff : MonoBehaviour, IWeapon
+public class MagicSword : MonoBehaviour, IWeapon
 {
     [SerializeField] private WeaponInfo weaponInfo;
     [SerializeField] private GameObject arrowPrefab;
