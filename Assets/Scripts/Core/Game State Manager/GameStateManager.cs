@@ -18,7 +18,7 @@ public class GameStateManager : MonoBehaviour
         Events.OnStateEnter?.Invoke(currentState);
     }
 
-    private void AnnounceStateOnSceneLoad(Scene arg0, LoadSceneMode arg1)
+    private void AnnounceStateOnSceneLoad(Scene arg, LoadSceneMode arg1)
     {
         if (currentState == null)
             Events.OnStateEnter?.Invoke(defaultState);
