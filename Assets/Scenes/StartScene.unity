@@ -127,21 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 44478501159142060, guid: 171319a39fe44df4cbfcc1d34b3a1706,
-        type: 3}
-      propertyPath: actionName
-      value: PauseButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 248361933169514958, guid: 171319a39fe44df4cbfcc1d34b3a1706,
-        type: 3}
-      propertyPath: actionName
-      value: ButtonStart
-      objectReference: {fileID: 0}
-    - target: {fileID: 660614973865268441, guid: 171319a39fe44df4cbfcc1d34b3a1706,
-        type: 3}
-      propertyPath: m_Name
-      value: InStartMenuState
-      objectReference: {fileID: 0}
     - target: {fileID: 2357800081480728254, guid: 171319a39fe44df4cbfcc1d34b3a1706,
         type: 3}
       propertyPath: m_Name
@@ -197,11 +182,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5899754772950826882, guid: 171319a39fe44df4cbfcc1d34b3a1706,
+    - target: {fileID: 6389054996944814480, guid: 171319a39fe44df4cbfcc1d34b3a1706,
         type: 3}
-      propertyPath: defaultState
-      value: 
-      objectReference: {fileID: 2118876167}
+      propertyPath: actionName
+      value: Home
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1340,18 +1325,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &2118876167 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4505148089587361412, guid: 171319a39fe44df4cbfcc1d34b3a1706,
-    type: 3}
-  m_PrefabInstance: {fileID: 248520076}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa55fef4b743554295439af195bb0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,11 +1,15 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     private float pausedTimeScale = 0f;
     private float normalTimeScale = 1f;
+    [SerializeField] NamedActionTransition returnToStartTransition;
+
 
     public void Pause()
     {
@@ -22,4 +26,5 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = normalTimeScale;
     }
+
 }

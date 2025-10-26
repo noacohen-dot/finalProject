@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6117527652388506102}
   - component: {fileID: 4505148089587361412}
   m_Layer: 0
-  m_Name: InMenuState
+  m_Name: InStartMenuState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,6 +50,98 @@ MonoBehaviour:
   previousState: {fileID: 0}
   wasTransitionedInto: 0
   inTransition: 0
+--- !u!1 &1088285065035745360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 223619333302875519}
+  - component: {fileID: 3505192997369428537}
+  m_Layer: 0
+  m_Name: ContinueToGameState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &223619333302875519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088285065035745360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6789227546331446179}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3505192997369428537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088285065035745360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25a8db070e7d4c49b70e3e489512b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetState: {fileID: 7457487475182068470}
+  actionName: Resume
+--- !u!1 &1228002538934053654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5758802526386727254}
+  - component: {fileID: 6389054996944814480}
+  m_Layer: 0
+  m_Name: PassToStartMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5758802526386727254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228002538934053654}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6789227546331446179}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6389054996944814480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228002538934053654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25a8db070e7d4c49b70e3e489512b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetState: {fileID: 4505148089587361412}
+  actionName: Home
 --- !u!1 &2357800081480728254
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 0}
-  defaultState: {fileID: 0}
+  defaultState: {fileID: 4505148089587361412}
 --- !u!1 &3112961175464774622
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4323540783672486630}
-  - component: {fileID: 44478501159142060}
+  - component: {fileID: 4116437296039735522}
   m_Layer: 0
   m_Name: StartPauseMenu
   m_TagString: Untagged
@@ -226,7 +318,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 672993337949943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &44478501159142060
+--- !u!114 &4116437296039735522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,11 +327,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3112961175464774622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cf6bde170f2ea54dbd3c1f482d7fd30, type: 3}
+  m_Script: {fileID: 11500000, guid: a25a8db070e7d4c49b70e3e489512b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetState: {fileID: 4954783891882660265}
-  actionName: 
+  actionName: PauseButton
 --- !u!1 &5121962941260267206
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetState: {fileID: 7457487475182068470}
-  actionName: StartButton
+  actionName: ButtonStart
 --- !u!1 &7148969578217615690
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +407,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 223619333302875519}
+  - {fileID: 5758802526386727254}
   m_Father: {fileID: 9186086173364976098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4954783891882660265

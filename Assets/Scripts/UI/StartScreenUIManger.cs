@@ -35,7 +35,6 @@ public class StartSceenUIManger : MonoBehaviour
             }
         }
     }
-
     private void AddButtonsListenrs()
     {
         startButton.onClick.AddListener(() => SceneManager.LoadScene(firstLevelName));

@@ -4,6 +4,5 @@ using UnityEngine;
 public class StateSO : ScriptableObject
 {
     public bool canMove;
-    public bool canMenu;
-    
+    public bool canMenu;    
 }
